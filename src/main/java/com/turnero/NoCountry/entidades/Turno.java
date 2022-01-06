@@ -5,10 +5,33 @@
  */
 package com.turnero.NoCountry.entidades;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  *
  * @author Rodrigo Caro
  */
+@Data
+@Entity
 public class Turno {
-    
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+     @ManyToOne
+     private Empresa empresa;
+     @ManyToOne
+     private Usuario usuario;
+     @ManyToOne
+     private Ciudad ciudad;
+     @ManyToOne
+     private Provincia provincia;
+     @ManyToOne
+     private Hora hora;
+     
 }

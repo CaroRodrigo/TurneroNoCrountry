@@ -5,10 +5,32 @@
  */
 package com.turnero.NoCountry.entidades;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  *
  * @author Rodrigo Caro
  */
-public class Ciudad {
+@Data
+@Entity
+public class Ciudad implements Serializable, Comparable {
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+    private String ciudad;
+    @ManyToOne
+    private Provincia provincia;
     
+    @Override
+    public int compareTo(Object t) {
+        Ciudad ciudad = (Ciudad) t;
+        return this.ciudad.compareTo(ciudad.getCiudad());
+    }
 }

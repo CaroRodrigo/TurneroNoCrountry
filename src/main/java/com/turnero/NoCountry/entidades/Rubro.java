@@ -5,10 +5,29 @@
  */
 package com.turnero.NoCountry.entidades;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  *
  * @author Rodrigo Caro
  */
-public class Rubro {
-    
+@Data
+@Entity
+public class Rubro implements Serializable, Comparable {
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+    private String rubro;
+
+    @Override
+    public int compareTo(Object t) {
+       Rubro rubro = (Rubro) t;
+        return this.rubro.compareTo(rubro.getRubro());
+    }
 }

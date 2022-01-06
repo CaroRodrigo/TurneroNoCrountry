@@ -19,19 +19,17 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Data
 @Entity
-public class Persona implements Serializable {
+public class Hora implements Serializable, Comparable{
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    private String dni;
-    private String nombre;
-    private String apellido;
-    private String telefono;
-    private String direccion;
-    @ManyToOne
-    private Provincia provincia;
-    @ManyToOne
-    private Ciudad ciudad;
-    private String email;
+    private String hora;
+
+    
+    @Override
+    public int compareTo(Object t) {
+        Hora hora = (Hora) t;
+        return this.hora.compareTo(hora.getHora());
+    }
 }
