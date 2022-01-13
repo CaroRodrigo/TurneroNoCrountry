@@ -6,10 +6,10 @@
 package com.turnero.NoCountry.entidades;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,19 +19,19 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Data
 @Entity
-public class Persona implements Serializable {
+public class TipoCliente implements Serializable, Comparable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    private String dni;
-    private String nombre;
-    private String apellido;
-    private String telefono;
-    private String direccion;
-    @ManyToOne
-    private Provincia provincia;
-    @ManyToOne
-    private Ciudad ciudad;
-    private String email;
+    
+    @Column(name = "tipo_de_cliente")
+    private String tipoCliente;
+    
+
+    @Override
+    public int compareTo(Object t) {
+       Cliente cliente = (Cliente) t;
+        return this.tipoCliente.compareTo(cliente.getNombre());
+    }
 }

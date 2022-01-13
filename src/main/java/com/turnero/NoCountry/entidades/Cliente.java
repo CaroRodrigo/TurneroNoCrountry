@@ -6,6 +6,7 @@
 package com.turnero.NoCountry.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,18 +15,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.Data;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
  * @author Rodrigo Caro
  */
-@Data
+@Getter
+@Setter
 @Entity
-public class Empresa implements Serializable {
+public class Cliente implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -33,27 +37,41 @@ public class Empresa implements Serializable {
     
     private String nombre;
     
-    private String telefono;
+    private String apellido;
+    
+    private String dni;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Column(name = "fecha_de_nacimiento")
+    @Temporal(TemporalType.DATE)
+    private Date FechaNacimiento;
     
     private String direccion;
     
-     @NotFound(action=NotFoundAction.IGNORE)
+    private String cp;
+    
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "provincia_id", insertable = false, updatable = false)
     private Provincia provincia;
     
-     @NotFound(action=NotFoundAction.IGNORE)
     @Column(name = "provincia_id", nullable = false)
     private String provinciaId;
     
-     @NotFound(action=NotFoundAction.IGNORE)
+    private String telefono;
+    
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "ciudad_id", insertable = false, updatable = false)
     private Ciudad ciudad;
     
-      @NotFound(action=NotFoundAction.IGNORE)
     @Column(name = "ciudad_id", nullable = false)
     private String ciudadId;
     
     private String email;
+    
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "tipo_cliente_id", insertable = false, updatable = false)
+    private TipoCliente tipoCliente;
+    
+    @Column(name = "cliente_id", nullable = false)
+    private String tipoClienteId;
 }

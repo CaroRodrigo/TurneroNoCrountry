@@ -23,6 +23,7 @@ public class Provincia implements Serializable, Comparable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    
     private String provincia;
     
     @Override

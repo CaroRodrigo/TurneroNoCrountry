@@ -24,9 +24,9 @@ public class Ciudad implements Serializable, Comparable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    
     private String ciudad;
-    @ManyToOne
-    private Provincia provincia;
+
     
     @Override
     public int compareTo(Object t) {
