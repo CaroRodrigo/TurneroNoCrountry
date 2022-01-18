@@ -44,27 +44,17 @@ public class Cliente implements Serializable {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "fecha_de_nacimiento")
     @Temporal(TemporalType.DATE)
-    private Date FechaNacimiento;
-    
-    private String direccion;
-    
+    private Date FechaNacimiento;    
+    private String direccion;    
     private String cp;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "provincia_id", insertable = false, updatable = false)
-    private Provincia provincia;
-    
-    @Column(name = "provincia_id", nullable = false)
-    private String provinciaId;
+    private String provincia;     
     
     private String telefono;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ciudad_id", insertable = false, updatable = false)
-    private Ciudad ciudad;
-    
-    @Column(name = "ciudad_id", nullable = false)
-    private String ciudadId;
+  
+    private String Ciudad; 
+   
     
     private String email;
     

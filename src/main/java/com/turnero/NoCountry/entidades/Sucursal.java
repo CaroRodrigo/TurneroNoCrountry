@@ -31,23 +31,20 @@ public class Sucursal implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
+    private String nombre;
     private String direccion;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "provincia_id", insertable = false, updatable = false)
-    private Provincia provincia;
+  
     
-    @Column(name = "provincia_id", nullable = false)
-    private String provinciaId;
+    private String Telefono;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ciudad_id", insertable = false, updatable = false)
-    private Ciudad ciudad;
+    private String Email;
     
-    @Column(name = "ciudad_id", nullable = false)
-    private String ciudadId;
+   
+    private String provincia;
     
+    private String ciudad;
+  
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
     private Usuario usuario;
